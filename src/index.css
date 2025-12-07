@@ -1,0 +1,375 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --yellow: #FFD34D;
+  --blue: #2B6CB0;
+  --pink: #FF8FB1;
+  --cream: #FFF9F2;
+}
+
+html,body,#root{height:100%;}
+
+.font-dancing{font-family: 'Dancing Script', cursive;}
+.font-inter{font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+
+.bg-cream{background: linear-gradient(180deg, rgba(255,250,245,1) 0%, rgba(255,247,240,1) 100%);}
+
+.floral-bg{background-image: radial-gradient(circle at 10% 20%, rgba(255,200,230,0.12), transparent 10%), radial-gradient(circle at 80% 70%, rgba(200,230,255,0.08), transparent 12%), radial-gradient(circle at 40% 40%, rgba(255,240,220,0.08), transparent 8%), radial-gradient(circle at 70% 20%, rgba(255,220,240,0.06), transparent 9%), radial-gradient(circle at 20% 80%, rgba(220,240,255,0.05), transparent 7%);} 
+
+@keyframes float{
+  0% { transform: translateY(0) rotate(0deg); opacity: 0.85 }
+  50% { transform: translateY(-20px) rotate(6deg); opacity: 1 }
+  100% { transform: translateY(0) rotate(0deg); opacity: 0.9 }
+}
+
+/* small responsive tweaks */
+@media (max-width: 640px){
+  .font-dancing{font-size:28px}
+}
+
+/* slightly larger decorative layer for depth (kept, behind content) */
+body::after{
+  /* keep celebrate ::after usage — we override with higher specificity when body.celebrate is present */
+  content: '';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  background-image: radial-gradient(circle at 15% 30%, rgba(255,200,230,0.03), transparent 6%), radial-gradient(circle at 85% 65%, rgba(200,230,255,0.02), transparent 8%);
+}
+
+/* -- New enhanced background styles -- */
+.bg-beautiful{
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(255,210,230,0.18), transparent 6%),
+    radial-gradient(circle at 85% 70%, rgba(200,230,255,0.12), transparent 9%),
+    radial-gradient(circle at 50% 10%, rgba(255,245,220,0.06), transparent 5%),
+    linear-gradient(180deg, rgba(255,249,244,1) 0%, rgba(255,247,240,1) 100%);
+  background-attachment: fixed;
+  background-size: cover, cover, cover, auto;
+  position: relative;
+}
+
+/* Styled option button used by Quiz */
+.option-btn{
+  backdrop-filter: blur(4px);
+}
+
+/* small utility for decorative font weight on choices */
+.question-accent{font-weight:600}
+
+/* Subtitle styling for header */
+.subtitle{
+  font-size:1.05rem;
+  background: linear-gradient(90deg, var(--pink) 0%, var(--yellow) 50%, var(--blue) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-style: italic;
+  letter-spacing: 0.2px;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+}
+.subtitle::after{
+  content: '';
+  display: block;
+  width: 72px;
+  height: 6px;
+  margin: 8px auto 0;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, rgba(255,143,177,0.9), rgba(255,211,77,0.9), rgba(43,108,176,0.9));
+  opacity: 0.95;
+}
+
+/* Victorian letter/card styling for the quiz container */
+.victorian-card{
+  background: linear-gradient(180deg, #fffaf0 0%, #fff6ea 100%);
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 18px 40px rgba(12,15,20,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
+  position: relative;
+  overflow: hidden;
+}
+.victorian-card::before{
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 0; height: 56px;
+  background: linear-gradient(90deg, rgba(255,215,130,0.12), rgba(255,215,130,0.06));
+  border-bottom: 1px solid rgba(255,215,130,0.22);
+  pointer-events: none;
+}
+.victorian-card::after{
+  content: '❦   ❦   ❦';
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 18px;
+  color: rgba(205,150,70,0.9);
+  letter-spacing: 14px;
+  pointer-events: none;
+  opacity: 0.95;
+}
+
+/* inner ornamental frame */
+.victorian-card .inner-frame{
+  border: 1px solid rgba(240,220,190,0.35);
+  padding: 18px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,250,245,0.6));
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.03);
+}
+
+/* Sea-style background for the quiz inner frame */
+.quiz-sea{
+  background: linear-gradient(180deg, #e6fbff 0%, #c7f0fb 35%, #98d8e8 100%);
+  color: #03384a;
+  position: relative;
+  overflow: hidden;
+}
+
+.quiz-sea::before{
+  /* soft sun glints / water highlights */
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.12), transparent 8%), radial-gradient(circle at 80% 60%, rgba(255,255,255,0.08), transparent 10%);
+  mix-blend-mode: screen;
+  opacity: 0.95;
+}
+
+.quiz-sea::after{
+  /* subtle moving wave stripes */
+  content: '';
+  position: absolute;
+  left: -25%;
+  right: -25%;
+  top: 20%;
+  height: 60%;
+  background: repeating-linear-gradient(90deg, rgba(255,255,255,0.06) 0 6px, transparent 6px 18px);
+  transform: rotate(-12deg);
+  opacity: 0.6;
+  animation: seaWaveMove 8s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes seaWaveMove{
+  from{background-position:0 0}
+  to{background-position:360px 0}
+}
+
+/* thin bubbles overlay */
+.quiz-sea .bubble-overlay{
+  position: absolute; inset: 0; pointer-events: none; z-index: 2;
+  background-image: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.06), transparent 6%), radial-gradient(circle at 60% 50%, rgba(255,255,255,0.04), transparent 8%);
+  mix-blend-mode: screen;
+  opacity: 0.9;
+}
+
+/* tweak buttons to fit sea palette */
+.quiz-sea .option-btn{
+  background: rgba(255,255,255,0.8);
+  border-color: rgba(255,255,255,0.5);
+  box-shadow: 0 6px 18px rgba(8, 94, 119, 0.06);
+}
+
+/* ensure headings contrast nicely over sea */
+.quiz-sea .font-dancing, .quiz-sea h3{color: #043a4a}
+
+/* subtle moving texture overlay for depth */
+.bg-beautiful::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0 1px, transparent 1px 6px), radial-gradient(circle at 30% 70%, rgba(255,220,240,0.02), transparent 8%);
+  opacity: 0.12;
+  animation: drift 18s linear infinite;
+  mix-blend-mode: soft-light;
+  z-index: -1;
+}
+
+@keyframes drift{
+  from{background-position:0 0, 0 0}
+  to{background-position:800px 600px, -600px -400px}
+}
+
+/* subtle textured decorative layer (replaces emoji scatter) */
+body::before{
+  content: '';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(255,220,235,0.03), transparent 8%),
+    radial-gradient(circle at 85% 75%, rgba(210,235,255,0.025), transparent 9%),
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0 2px, transparent 2px 8px);
+  opacity: 0.9;
+  mix-blend-mode: screen;
+  filter: blur(6px) saturate(1.05);
+}
+
+/* floating small decorative elements using CSS variables for subtle movement */
+.decor-floating{
+  position: absolute;
+  pointer-events: none;
+  will-change: transform, opacity;
+  animation: floatSlow 8s ease-in-out infinite;
+}
+
+@keyframes floatSlow{
+  0%{transform: translateY(0) }
+  50%{transform: translateY(-14px) }
+  100%{transform: translateY(0) }
+}
+
+/* final overlay pink wavy lines */
+.final-waves{position:absolute; inset:0; pointer-events:none; z-index:10001}
+.final-wave{
+  position:absolute;
+  height:2px; /* thinner */
+  background: linear-gradient(90deg, rgba(255,143,177,0.95), rgba(255,143,177,0.6));
+  opacity:0;
+  border-radius:4px;
+  transform-origin: center;
+  top: 50%;
+  left: 10%;
+  animation-name: waveFadeRandom;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes waveFadeRandom{
+  0%{opacity:0; transform: translateX(-10%) scaleX(0.6) rotate(0deg)}
+  20%{opacity:0.45}
+  40%{opacity:0.9}
+  60%{opacity:0.9}
+  85%{opacity:0.4}
+  100%{opacity:0; transform: translateX(40%) scaleX(1.05) rotate(0deg)}
+}
+
+/* feedback animations */
+.option-correct{box-shadow: 0 10px 30px rgba(16,185,129,0.12); transform: scale(1.03)}
+.option-wrong{animation: shake 0.6s}
+
+@keyframes shake{
+  0%{transform: translateX(0)}
+  20%{transform: translateX(-8px)}
+  40%{transform: translateX(6px)}
+  60%{transform: translateX(-4px)}
+  80%{transform: translateX(2px)}
+  100%{transform: translateX(0)}
+}
+
+/* confetti simple style */
+.confetti-piece{position:absolute; font-size:20px; will-change: transform, opacity}
+
+/* enhance celebration hearts further: drop shadow and a bit higher */
+/* celebration marker: no emoji, keep small decorative effect if needed */
+.celebrate::after{
+  content: '';
+  position:fixed; left:50%; top:6%; transform:translateX(-50%); width:180px; height:60px; pointer-events:none; z-index:9999; filter: drop-shadow(0 8px 12px rgba(0,0,0,0.12));
+  background: radial-gradient(circle at 30% 50%, rgba(255,200,230,0.9), transparent 40%), radial-gradient(circle at 70% 50%, rgba(200,230,255,0.9), transparent 40%);
+  opacity: 0.9; border-radius: 20px; animation: pop 1s ease-in-out infinite;
+}
+
+/* Final overlay (black screen + typed message) */
+.final-overlay{
+  position:fixed;
+  inset:0;
+  z-index:10000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: radial-gradient(1200px 600px at 10% 20%, rgba(255,200,220,0.12), transparent 10%), radial-gradient(1000px 600px at 90% 80%, rgba(200,230,255,0.08), transparent 12%), linear-gradient(180deg, rgba(6,7,13,0.6), rgba(10,12,20,0.75));
+  backdrop-filter: blur(6px) saturate(1.05);
+  -webkit-backdrop-filter: blur(6px) saturate(1.05);
+  background-size: 120% 120%, 120% 120%, auto;
+  animation: finalGradient 12s linear infinite;
+}
+
+@keyframes finalGradient{
+  0%{background-position:0% 0%, 100% 100%, 0 0}
+  50%{background-position:20% 10%, 80% 90%, 0 0}
+  100%{background-position:0% 0%, 100% 100%, 0 0}
+}
+
+.final-sparkles{position:absolute; inset:0; overflow:hidden}
+.final-sparkle{
+  position:absolute;
+  border-radius:50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95), rgba(255,255,255,0.6)), linear-gradient(90deg, rgba(255,200,230,0.9), rgba(255,240,200,0.7));
+  opacity:0;
+  transform: translateY(8px) scale(0.9);
+  animation: sparkleMove 2.8s ease-in-out infinite both;
+}
+
+@keyframes sparkleMove{
+  0%{opacity:0; transform: translateY(8px) scale(0.6)}
+  10%{opacity:1; transform: translateY(0) scale(1)}
+  60%{opacity:0.9; transform: translateY(-18px) scale(0.95)}
+  100%{opacity:0; transform: translateY(-28px) scale(0.8)}
+}
+
+.final-ribbon{
+  position:absolute;
+  left:50%;
+  bottom:8%;
+  transform:translateX(-50%) rotate(-3deg);
+  width:70%;
+  height:14px;
+  border-radius:999px;
+  background: linear-gradient(90deg, rgba(255,120,160,0.95), rgba(255,210,90,0.85), rgba(80,160,240,0.85));
+  filter: blur(6px);
+  opacity:0.9;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.18) inset;
+}
+.final-inner{max-width:900px; padding:20px; text-align:center}
+.final-text{font-size:28px; color:#ff4d4d; font-style:italic; line-height:1.5;}
+.cursor{display:inline-block; margin-left:6px; opacity:1; animation: blink 1s steps(2,start) infinite}
+@keyframes blink{50%{opacity:0}}
+.heart-yellow{color:#FFD34D; animation: popHeart 0.9s ease forwards}
+@keyframes popHeart{0%{transform:scale(0.4); opacity:0}60%{transform:scale(1.15); opacity:1}100%{transform:scale(1); opacity:1}}
+
+/* pulsating heart */
+.heart-beat{color:#FFD34D; animation: beat 1s ease-in-out infinite; transform-origin:center}
+@keyframes beat{0%{transform:scale(0.9)}30%{transform:scale(1.18)}60%{transform:scale(0.95)}100%{transform:scale(1)}}
+
+/* final roses on the sides */
+.final-rose{position:fixed; top:30%; font-size:48px; opacity:0; transform: translateY(0) scale(0.9); animation: roseIn 1s ease forwards}
+.final-rose-left{left:6%; animation-delay:0.25s}
+.final-rose-right{right:6%; animation-delay:0.45s}
+@keyframes roseIn{0%{opacity:0; transform: translateY(-10px) scale(0.8)}60%{opacity:1; transform: translateY(6px) scale(1.08)}100%{opacity:0.95; transform: translateY(0) scale(1)}}
+
+/* subtle floating motion for left/right roses */
+.final-rose-left{animation-name: roseIn, floatSlow; animation-duration: 1s, 6s; animation-iteration-count: 1, infinite; animation-timing-function: ease, ease-in-out}
+.final-rose-right{animation-name: roseIn, floatSlowReverse; animation-duration: 1s, 7s; animation-iteration-count: 1, infinite; animation-timing-function: ease, ease-in-out}
+@keyframes floatSlowReverse{0%{transform:translateY(0)}50%{transform:translateY(10px)}100%{transform:translateY(0)}}
+
+/* Deep background bubbles layer (very subtle, behind other decorations) */
+html::before{
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -2; /* behind body::before/after */
+  opacity: 0.16;
+  mix-blend-mode: screen;
+  background-image:
+    radial-gradient(circle at 12% 92%, rgba(255,255,255,0.14) 0 6px, transparent 8px),
+    radial-gradient(circle at 28% 98%, rgba(255,255,255,0.12) 0 5px, transparent 7px),
+    radial-gradient(circle at 46% 94%, rgba(255,255,255,0.10) 0 7px, transparent 9px),
+    radial-gradient(circle at 64% 99%, rgba(255,255,255,0.09) 0 6px, transparent 8px),
+    radial-gradient(circle at 82% 95%, rgba(255,255,255,0.08) 0 5px, transparent 7px);
+  background-repeat: repeat-x;
+  background-size: 200% 200%;
+  animation: bubblesRise 18s linear infinite;
+}
+
+@keyframes bubblesRise{
+  from{background-position: 0 120%; transform: translateY(6%)}
+  to{background-position: 0 -40%; transform: translateY(-6%)}
+}
+
